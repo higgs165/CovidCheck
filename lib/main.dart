@@ -21,15 +21,22 @@ class _CovidState extends State<Covid> {
     getStats();
   }
 
-  var confirmed;
-  var deaths;
-  var recovered;
+  bool isWaiting = false;
+  Map<String, String> statsMap = {};
 
   void getStats() async {
-    DataCall dataCall = DataCall();
-    confirmed = await dataCall.getConfirmed();
-    deaths = await dataCall.getDeaths();
-    recovered = await dataCall.getRecovered();
+    isWaiting = true;
+
+    try {
+      var data = await DataCall().getStats();
+      isWaiting = true;
+      setState(() {
+        statsMap = data;
+      });
+    }
+    catch (e) {
+      print(e);
+    }
   }
 
   @override
@@ -46,28 +53,33 @@ class _CovidState extends State<Covid> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            StatsCard(text: 'Total Confirmed: $confirmed'),
-            StatsCard(text: 'Total Deaths: $deaths'),
-            StatsCard(text: 'Total Recovered: $recovered'),
+            StatsCard(text: 'Confirmed', stat: statsMap['confirmed']),
+            StatsCard(text: 'Deaths', stat: statsMap['deaths']),
+            StatsCard(text: 'Recovered', stat: statsMap['recovered']),
           ],
         ));
   }
 }
 
 class StatsCard extends StatelessWidget {
-  StatsCard({this.text});
+  StatsCard({this.text, this.stat});
 
   final String text;
+  final String stat;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.all(15.0),
-      height: 120.0,
-      color: Colors.white,
-      child: Center(
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Card(
+        margin: EdgeInsets.all(15.0),
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        elevation: 6.0,
         child: Text(
-          text,
+          'Total $text = $stat',
           style: TextStyle(
             color: Colors.black,
             fontWeight: FontWeight.bold,
