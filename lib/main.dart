@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'api_call.dart';
+import 'stats.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
 
@@ -116,9 +117,9 @@ class _CovidState extends State<Covid> {
               ),
               child: ListView(
                 children: <Widget>[
-                  StatsContainer(text: 'Confirmed', textColour: Colors.orangeAccent),
-                  StatsContainer(text: 'Deaths', textColour: Colors.red),
-                  StatsContainer(text: 'Recovered', textColour: Colors.green),
+                  StatsContainer(text: 'Confirmed', stat: isWaiting ? 'Retrieving...' : statsMap['confirmed'], statColour: Colors.orangeAccent),
+                  StatsContainer(text: 'Deaths', stat: isWaiting ? 'Retrieving...' : statsMap['deaths'], statColour: Colors.red),
+                  StatsContainer(text: 'Recovered', stat: isWaiting ? 'Retrieving...' : statsMap['confirmed'], statColour: Colors.green),
                 ],
               ),
             ),
@@ -129,43 +130,4 @@ class _CovidState extends State<Covid> {
   }
 }
 
-class StatsContainer extends StatelessWidget {
 
-  StatsContainer({this.text, this.textColour});
-
-  final String text;
-  final Color textColour;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(top: 30.0),
-      padding: EdgeInsets.all(15.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-        color: Colors.white,
-      ),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: Text(
-              'Total $text',
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 18.0,
-              ),
-            ),
-          ),
-          Text(
-            '700,000',
-            style: TextStyle(
-              color: textColour,
-              fontSize: 30.0,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
