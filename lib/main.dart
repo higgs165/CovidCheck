@@ -1,11 +1,15 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'api_call.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+
+bool isWaiting = false;
 
 void main() {
   runApp(MaterialApp(
     theme: ThemeData.dark().copyWith(
-      scaffoldBackgroundColor: Colors.white,
+      scaffoldBackgroundColor: Colors.blue.shade700,
     ),
     home: Covid(),
   ));
@@ -17,13 +21,14 @@ class Covid extends StatefulWidget {
 }
 
 class _CovidState extends State<Covid> {
+  String country = 'Global';
+
   @override
   void initState() {
     super.initState();
     getStats();
   }
 
-  bool isWaiting = false;
   Map<String, String> statsMap = {};
 
   void getStats() async {
@@ -34,8 +39,7 @@ class _CovidState extends State<Covid> {
       setState(() {
         statsMap = data;
       });
-    }
-    catch (e) {
+    } catch (e) {
       print(e);
     }
   }
@@ -44,66 +48,123 @@ class _CovidState extends State<Covid> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: GradientAppBar(
-        title: Text('COVID-19 STATS'),
+        title: Text('COVID-19 Stats'),
         centerTitle: true,
         elevation: 12.0,
         gradient: LinearGradient(
           colors: [Colors.lightBlue, Colors.blue.shade900],
         ),
       ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
-            StatsCard(text: 'Confirmed', stat: isWaiting ? 'Retrieving... ' : statsMap['confirmed'], borderColour: Colors.orangeAccent, shadowColour: Colors.orangeAccent),
-            StatsCard(text: 'Deaths', stat: isWaiting ? 'Retrieving... ' : statsMap['deaths'], borderColour: Colors.red.shade900, shadowColour: Colors.red),
-            StatsCard(text: 'Recovered', stat: isWaiting ? 'Retrieving... ' : statsMap['recovered'], borderColour: Colors.lightGreenAccent, shadowColour: Colors.lightGreenAccent),
-          ],
-        ));
+      body: Column(
+        children: <Widget>[
+          Center(
+            child: Container(
+              margin: EdgeInsets.only(top: 30.0),
+              padding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.all(Radius.circular(30.0)),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black,
+                    blurRadius: 2.0,
+                    spreadRadius: 0.0,
+                    offset: Offset(2.0, 2.0), // shadow direction: bottom right
+                  )
+                ],
+              ),
+              child: DropdownButtonHideUnderline(
+                child: DropdownButton<String>(
+                  value: country,
+                  icon: Icon(Icons.arrow_drop_down, color: Colors.black),
+                  dropdownColor: Colors.white,
+                  elevation: 6,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20.0,
+                    fontFamily: 'Comfortaa',
+                  ),
+                  onChanged: (String newValue) {
+                    setState(() {
+                      country = newValue;
+                    });
+                  },
+                  items: <String>['Global', 'Ireland', 'UK']
+                      .map<DropdownMenuItem<String>>((String value) {
+                    return DropdownMenuItem<String>(
+                      value: value,
+                      child: Text(value),
+                    );
+                  }).toList(),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(height: 30.0),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [Colors.blue.shade900, Colors.purple],
+                ),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20.0),
+                    topRight: Radius.circular(20.0)),
+              ),
+              child: ListView(
+                children: <Widget>[
+                  StatsContainer(text: 'Confirmed', textColour: Colors.orangeAccent),
+                  StatsContainer(text: 'Deaths', textColour: Colors.red),
+                  StatsContainer(text: 'Recovered', textColour: Colors.green),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
-class StatsCard extends StatelessWidget {
-  StatsCard({this.text, this.stat, this.borderColour, this.shadowColour});
+class StatsContainer extends StatelessWidget {
+
+  StatsContainer({this.text, this.textColour});
 
   final String text;
-  final String stat;
-  final Color borderColour;
-  final Color shadowColour;
+  final Color textColour;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return Container(
+      margin: EdgeInsets.only(top: 30.0),
       padding: EdgeInsets.all(15.0),
-      child: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.topRight,
-            colors: [borderColour, Colors.white],
-          ),
-          borderRadius: BorderRadius.all(Radius.circular(15.0)),
-        ),
-        child: Card(
-          shadowColor: shadowColour,
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          elevation: 6.0,
-          child: Padding(
-            padding: const EdgeInsets.all(30.0),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        color: Colors.white,
+      ),
+      child: Row(
+        children: <Widget>[
+          Expanded(
             child: Text(
-              'Total $text = $stat',
+              'Total $text',
               style: TextStyle(
-                fontFamily: 'Comfortaa',
                 color: Colors.black,
-                fontWeight: FontWeight.bold,
                 fontSize: 18.0,
               ),
             ),
           ),
-        ),
+          Text(
+            '700,000',
+            style: TextStyle(
+              color: textColour,
+              fontSize: 30.0,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
       ),
     );
   }
