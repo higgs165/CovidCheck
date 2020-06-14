@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class StatsContainer extends StatelessWidget {
 
-  StatsContainer({this.text, this.statColour, this.stat});
+  StatsContainer({this.text, this.statColour, this.stat, this.icon});
 
   final String text;
   final Color statColour;
   final String stat;
+  final IconData icon;
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +16,7 @@ class StatsContainer extends StatelessWidget {
       margin: EdgeInsets.only(top: 30.0),
       padding: EdgeInsets.all(15.0),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+        borderRadius: BorderRadius.all(Radius.circular(30.0)),
         color: Colors.white,
         boxShadow: <BoxShadow>[
           BoxShadow(
@@ -25,9 +27,14 @@ class StatsContainer extends StatelessWidget {
       ),
       child: Row(
         children: <Widget>[
+          Icon(
+            icon,
+            color: Colors.black,
+          ),
+          SizedBox(width: 10.0),
           Expanded(
             child: Text(
-              'Total $text',
+              '$text',
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 18.0,

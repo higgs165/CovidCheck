@@ -4,7 +4,14 @@ import 'dart:convert';
 class DataCall {
   Future getStats(String region) async {
     Map<String, String> statMap = {};
-    String requestUrl = 'https://disease.sh/v2/countries/$region';
+    String requestUrl;
+
+    if(region == 'Global') {
+      requestUrl = 'https://disease.sh/v2/all';
+    }
+    else {
+      requestUrl = 'https://disease.sh/v2/countries/$region';
+    }
 
     http.Response response = await http.get(requestUrl);
 
@@ -14,12 +21,14 @@ class DataCall {
       int confirmed = data['cases'];
       int deaths = data['deaths'];
       int recovered = data['recovered'];
-      //String flag = data['countryInfo']['flag'];
+      int todayCases = data['todayCases'];
+      int todayDeaths = data['todayDeaths'];
 
       statMap['confirmed'] = confirmed.toString();
       statMap['deaths'] = deaths.toString();
       statMap['recovered'] = recovered.toString();
-      //statMap['flag'] = flag.toString();
+      statMap['todayCases'] = todayCases.toString();
+      statMap['todayDeaths'] = todayDeaths.toString();
 
       return statMap;
     } else {
