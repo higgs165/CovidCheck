@@ -14,14 +14,12 @@ class DataCall {
       int confirmed = data['cases'];
       int deaths = data['deaths'];
       int recovered = data['recovered'];
-      String flag = data['countryInfo']['flag'];
+      //String flag = data['countryInfo']['flag'];
 
       statMap['confirmed'] = confirmed.toString();
       statMap['deaths'] = deaths.toString();
       statMap['recovered'] = recovered.toString();
-      statMap['flag'] = flag.toString();
-
-      print(statMap['flag']);
+      //statMap['flag'] = flag.toString();
 
       return statMap;
     } else {
