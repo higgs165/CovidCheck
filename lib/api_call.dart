@@ -1,31 +1,32 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-const url = 'https://covid-api.com/api/reports/total';
-
 class DataCall {
-
-  Future getStats() async {
-
+  Future getStats(String region) async {
     Map<String, String> statMap = {};
+    String requestUrl = 'https://disease.sh/v2/countries/$region';
 
-    http.Response response = await http.get(url);
+    http.Response response = await http.get(requestUrl);
 
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
-      int confirmed = data['data']['confirmed'];
-      int deaths = data['data']['deaths'];
-      int recovered = data['data']['recovered'];
+
+      int confirmed = data['cases'];
+      int deaths = data['deaths'];
+      int recovered = data['recovered'];
+      String flag = data['countryInfo']['flag'];
 
       statMap['confirmed'] = confirmed.toString();
       statMap['deaths'] = deaths.toString();
       statMap['recovered'] = recovered.toString();
-      return statMap;
+      statMap['flag'] = flag.toString();
 
-    }
-    else {
+      print(statMap['flag']);
+
+      return statMap;
+    } else {
       print(response.statusCode);
-      throw 'Get request could not be completed';
+      throw 'Get request failed';
     }
   }
 }

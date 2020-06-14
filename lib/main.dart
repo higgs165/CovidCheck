@@ -10,7 +10,7 @@ bool isWaiting = false;
 void main() {
   runApp(MaterialApp(
     theme: ThemeData.dark().copyWith(
-      scaffoldBackgroundColor: Colors.blue.shade700,
+      scaffoldBackgroundColor: Colors.blue.shade900,
     ),
     home: Covid(),
   ));
@@ -22,7 +22,7 @@ class Covid extends StatefulWidget {
 }
 
 class _CovidState extends State<Covid> {
-  String country = 'Global';
+  String selectedLocation = 'Ireland';
 
   @override
   void initState() {
@@ -35,7 +35,7 @@ class _CovidState extends State<Covid> {
   void getStats() async {
     isWaiting = true;
     try {
-      var data = await DataCall().getStats();
+      var data = await DataCall().getStats(selectedLocation);
       isWaiting = false;
       setState(() {
         statsMap = data;
@@ -76,7 +76,7 @@ class _CovidState extends State<Covid> {
               ),
               child: DropdownButtonHideUnderline(
                 child: DropdownButton<String>(
-                  value: country,
+                  value: selectedLocation,
                   icon: Icon(Icons.arrow_drop_down, color: Colors.black),
                   dropdownColor: Colors.white,
                   elevation: 6,
@@ -87,10 +87,12 @@ class _CovidState extends State<Covid> {
                   ),
                   onChanged: (String newValue) {
                     setState(() {
-                      country = newValue;
+                      selectedLocation = newValue;
+                      print(selectedLocation);
+                      getStats();
                     });
                   },
-                  items: <String>['Global', 'Ireland', 'UK']
+                  items: <String>['Ireland', 'France', 'Spain', 'Portugal', 'Italy']
                       .map<DropdownMenuItem<String>>((String value) {
                     return DropdownMenuItem<String>(
                       value: value,
@@ -119,7 +121,8 @@ class _CovidState extends State<Covid> {
                 children: <Widget>[
                   StatsContainer(text: 'Confirmed', stat: isWaiting ? 'Retrieving...' : statsMap['confirmed'], statColour: Colors.orangeAccent),
                   StatsContainer(text: 'Deaths', stat: isWaiting ? 'Retrieving...' : statsMap['deaths'], statColour: Colors.red),
-                  StatsContainer(text: 'Recovered', stat: isWaiting ? 'Retrieving...' : statsMap['confirmed'], statColour: Colors.green),
+                  StatsContainer(text: 'Recovered', stat: isWaiting ? 'Retrieving...' : statsMap['recovered'], statColour: Colors.green),
+                  SizedBox(height: 20.0),
                 ],
               ),
             ),
