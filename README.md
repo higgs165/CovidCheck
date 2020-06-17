@@ -16,8 +16,8 @@ The user picks a location from the dropdown button at the top. The statistics fo
 
 # Under the Hood
 
-Programming language: Dart 
-IDE/compiler: Android Studio
+Programming Language: Dart (Flutter is the framework)
+IDE: Android Studio
 
 # Stage of Completion
 
