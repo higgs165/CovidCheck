@@ -1,6 +1,6 @@
 # CovidCheck
 
-A simple, minimal Android app made using Dart to display statistics regarding COVID-19, both globally and per region.
+A simple, minimal Android app made using Dart to display statistics regarding COVID-19, both globally and per region. Android Studio was the IDE used for this app.
 
 Stats include: 
 
@@ -13,10 +13,6 @@ Stats include:
 # How it Works
 
 The user picks a location from the dropdown button at the top. The statistics for that location or globally are retrieved using an API called NovelCOVID. 
-
-# Under the Hood
-
-IDE: Android Studio
 
 # Stage of Completion
 
