@@ -1,17 +1,19 @@
-# covidcheck
-
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
 # CovidCheck
+
+A simple, minimal Android app made using Dart to display statistics regarding COVID-19, both globally and per region. Android Studio was the IDE used for this app.
+
+Stats include: 
+
+- Confirmed Cases
+- Deaths
+- Recovered 
+- Cases Today
+- Deaths Today
+
+# How it Works
+
+The user picks a location from the dropdown button at the top. The statistics for that location or globally are retrieved using an API called NovelCOVID. 
+
+# Stage of Completion
+
+Nearly finished, may need to choose a different API as some stats strangely show a 0. Will also add screenshots.
