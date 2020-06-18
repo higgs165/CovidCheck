@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class StatsContainer extends StatelessWidget {
 
-  StatsContainer({this.text, this.statColour, this.stat, this.icon, this.iconColour});
+  StatsContainer({this.text, this.statColour, this.stat, this.icon, this.iconColour, this.icon2});
 
   final String text;
   final Color statColour;
   final String stat;
   final IconData icon;
+  final IconData icon2;
   final Color iconColour;
 
   @override
@@ -32,6 +32,11 @@ class StatsContainer extends StatelessWidget {
             icon,
             color: iconColour,
           ),
+          SizedBox(width: 5.0),
+          Icon(
+            icon2,
+            color: iconColour,
+          ),
           SizedBox(width: 10.0),
           Expanded(
             child: Text(
@@ -39,6 +44,8 @@ class StatsContainer extends StatelessWidget {
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 18.0,
+                fontFamily: 'Comfortaa',
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),

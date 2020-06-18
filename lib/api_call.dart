@@ -25,12 +25,14 @@ class DataCall {
       String confirmed = data['cases'].toString();
       String deaths = data['deaths'].toString();
       String recovered = data['recovered'].toString();
+      String casesToday = data['todayCases'].toString();
+      String deathsToday = data['todayDeaths'].toString();
 
       statMap['confirmed'] = confirmed.replaceAllMapped(reg, mathFunc);
       statMap['deaths'] = deaths.replaceAllMapped(reg, mathFunc);
       statMap['recovered'] = recovered.replaceAllMapped(reg, mathFunc);
-//      statMap['todayCases'] = todayCases.toString();
-//      statMap['todayDeaths'] = todayDeaths.toString();
+      statMap['casesToday'] = casesToday.toString().replaceAllMapped(reg, mathFunc);
+      statMap['deathsToday'] = deathsToday.toString().replaceAllMapped(reg, mathFunc);
 
       return statMap;
     } else {
