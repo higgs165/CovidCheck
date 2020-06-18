@@ -5,7 +5,6 @@ import 'countries_list.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-
 class Covid extends StatefulWidget {
   @override
   _CovidState createState() => _CovidState();
@@ -70,8 +69,6 @@ class _CovidState extends State<Covid> {
     }
   }
 
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,7 +83,44 @@ class _CovidState extends State<Covid> {
               color: Colors.white,
             ),
             onPressed: () {
-
+              showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return Container(
+                      height: 300,
+                      decoration: BoxDecoration(
+                          gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        stops: [0.5, 1],
+                        end: Alignment.bottomRight,
+                        colors: [Colors.white, Colors.lightBlueAccent],
+                      )),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
+                            'Developed by Mark Higgins',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20.0,
+                              fontFamily: 'Comfortaa',
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 30.0),
+                          Text(
+                            'Data retrieved using the NovelCOVIDAPI',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15.0,
+                              fontFamily: 'Comfortaa',
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  });
             },
           ),
         ],
@@ -103,7 +137,9 @@ class _CovidState extends State<Covid> {
             margin: EdgeInsets.only(top: 30.0),
             padding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
             decoration: BoxDecoration(
-              color: Colors.white,
+              gradient: LinearGradient(
+                colors: [Colors.blue, Colors.white],
+              ),
               borderRadius: BorderRadius.all(Radius.circular(30.0)),
               boxShadow: [
                 BoxShadow(
@@ -134,11 +170,30 @@ class _CovidState extends State<Covid> {
               ),
               child: ListView(
                 children: <Widget>[
-                  StatsContainer(text: 'Confirmed', stat: isWaiting ? 'Retrieving...' : statsMap['confirmed'], statColour: Colors.orange, icon: FontAwesomeIcons.checkSquare),
-                  StatsContainer(text: 'Deaths', stat: isWaiting ? 'Retrieving...' : statsMap['deaths'], statColour: Colors.red, icon: FontAwesomeIcons.skullCrossbones),
-                  StatsContainer(text: 'Recovered', stat: isWaiting ? 'Retrieving...' : statsMap['recovered'], statColour: Colors.green, icon: FontAwesomeIcons.heartbeat),
-                  StatsContainer(text: 'Cases Today', stat: isWaiting ? 'Retrieving...' : statsMap['todayCases'], statColour: Colors.blue, icon: FontAwesomeIcons.calendarDay),
-                  StatsContainer(text: 'Deaths Today', stat: isWaiting ? 'Retrieving...' : statsMap['todayDeaths'], statColour: Colors.purple, icon: FontAwesomeIcons.calendarDay),
+                  StatsContainer(
+                      text: 'Confirmed',
+                      stat: isWaiting ? 'Retrieving...' : statsMap['confirmed'],
+                      statColour: Colors.orange,
+                      icon: FontAwesomeIcons.checkSquare,
+                      iconColour: Colors.orange),
+                  StatsContainer(
+                      text: 'Deaths',
+                      stat: isWaiting ? 'Retrieving...' : statsMap['deaths'],
+                      statColour: Colors.red,
+                      icon: FontAwesomeIcons.skullCrossbones,
+                      iconColour: Colors.red),
+                  StatsContainer(
+                      text: 'Recovered',
+                      stat: isWaiting ? 'Retrieving...' : statsMap['recovered'],
+                      statColour: Colors.green,
+                      icon: FontAwesomeIcons.heartbeat,
+                      iconColour: Colors.green),
+                  StatsContainer(
+                      text: 'Recovered',
+                      stat: isWaiting ? 'Retrieving...' : statsMap['recovered'],
+                      statColour: Colors.green,
+                      icon: FontAwesomeIcons.heartbeat,
+                      iconColour: Colors.green),
                 ],
               ),
             ),
