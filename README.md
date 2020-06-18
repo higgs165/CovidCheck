@@ -16,4 +16,20 @@ The user picks a location from the dropdown button at the top. The statistics fo
 
 # Stage of Completion
 
-Nearly finished, may need to choose a different API as some stats strangely show a 0. Will also add screenshots.
+Nearly finished, may need to choose a different API as some stats show a 0 for recovered cases. Will also add screenshots.
+
+# Screenshots
+
+Screenshots taken around 16:20 on 18/06/2020
+
+<h3>Global Stats</h3>
+<img src="Screenshots/globalstats.jpg" alt="Global COVID-19 Stats" width="200" height="400">
+
+<h3>Country List</h3>
+<img src="Screenshots/countrylist.jpg" alt="Country List" width="200" height="400">
+
+<h3>US Stats</h3>
+<img src="Screenshots/usstats.jpg" alt="US COVID-19 Stats" width="200" height="400">
+
+<h3>China Stats</h3>
+<img src="Screenshots/chinastats.jpg" alt="China COVID-19 Stats" width="200" height="400">
