@@ -37,7 +37,6 @@ class _CovidState extends State<Covid> {
       style: TextStyle(
         color: Colors.black,
         fontSize: 20.0,
-        fontWeight: FontWeight.bold,
         fontFamily: 'Comfortaa',
       ),
       onChanged: (String newValue) {
@@ -92,7 +91,6 @@ class _CovidState extends State<Covid> {
                       decoration: BoxDecoration(
                           gradient: LinearGradient(
                         begin: Alignment.topLeft,
-                        stops: [0.5, 1],
                         end: Alignment.bottomRight,
                         colors: [Colors.white, Colors.lightBlueAccent],
                       )),
@@ -139,6 +137,7 @@ class _CovidState extends State<Covid> {
             padding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
             decoration: BoxDecoration(
               gradient: LinearGradient(
+                stops: [0.6, 1],
                 colors: [Colors.white, Colors.blue],
               ),
               borderRadius: BorderRadius.all(Radius.circular(30.0)),
@@ -173,32 +172,34 @@ class _CovidState extends State<Covid> {
                 children: <Widget>[
                   StatsContainer(
                       text: 'Confirmed',
-                      stat: isWaiting ? 'Retrieving...' : statsMap['confirmed'],
+                      stat: isWaiting ? 'Loading...' : statsMap['confirmed'],
                       statColour: Colors.orange,
                       icon: FontAwesomeIcons.checkSquare,
                       iconColour: Colors.orange),
                   StatsContainer(
                       text: 'Deaths',
-                      stat: isWaiting ? 'Retrieving...' : statsMap['deaths'],
+                      stat: isWaiting ? 'Loading...' : statsMap['deaths'],
                       statColour: Colors.red,
                       icon: FontAwesomeIcons.skullCrossbones,
                       iconColour: Colors.red),
                   StatsContainer(
                       text: 'Recovered',
-                      stat: isWaiting ? 'Retrieving...' : statsMap['recovered'],
+                      stat: isWaiting ? 'Loading...' : statsMap['recovered'],
                       statColour: Colors.green,
                       icon: FontAwesomeIcons.heartbeat,
                       iconColour: Colors.green),
                   StatsContainer(
                       text: 'Cases Today',
-                      stat: isWaiting ? 'Retrieving...' : statsMap['casesToday'],
+                      stat:
+                          isWaiting ? 'Loading...' : statsMap['casesToday'],
                       statColour: Colors.orange,
                       icon: FontAwesomeIcons.calendarDay,
                       icon2: FontAwesomeIcons.checkSquare,
                       iconColour: Colors.orange),
                   StatsContainer(
                       text: 'Deaths Today',
-                      stat: isWaiting ? 'Retrieving...' : statsMap['deathsToday'],
+                      stat:
+                          isWaiting ? 'Loading...' : statsMap['deathsToday'],
                       statColour: Colors.red,
                       icon: FontAwesomeIcons.calendarDay,
                       icon2: FontAwesomeIcons.skullCrossbones,
