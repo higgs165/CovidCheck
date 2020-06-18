@@ -37,6 +37,7 @@ class _CovidState extends State<Covid> {
       style: TextStyle(
         color: Colors.black,
         fontSize: 20.0,
+        fontWeight: FontWeight.bold,
         fontFamily: 'Comfortaa',
       ),
       onChanged: (String newValue) {
@@ -138,7 +139,7 @@ class _CovidState extends State<Covid> {
             padding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
             decoration: BoxDecoration(
               gradient: LinearGradient(
-                colors: [Colors.blue, Colors.white],
+                colors: [Colors.white, Colors.blue],
               ),
               borderRadius: BorderRadius.all(Radius.circular(30.0)),
               boxShadow: [
@@ -191,14 +192,14 @@ class _CovidState extends State<Covid> {
                   StatsContainer(
                       text: 'Cases Today',
                       stat: isWaiting ? 'Retrieving...' : statsMap['casesToday'],
-                      statColour: Colors.green.shade900,
+                      statColour: Colors.orange,
                       icon: FontAwesomeIcons.calendarDay,
                       icon2: FontAwesomeIcons.checkSquare,
                       iconColour: Colors.orange),
                   StatsContainer(
                       text: 'Deaths Today',
                       stat: isWaiting ? 'Retrieving...' : statsMap['deathsToday'],
-                      statColour: Colors.red.shade900,
+                      statColour: Colors.red,
                       icon: FontAwesomeIcons.calendarDay,
                       icon2: FontAwesomeIcons.skullCrossbones,
                       iconColour: Colors.red),

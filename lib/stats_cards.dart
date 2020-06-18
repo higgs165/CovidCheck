@@ -53,7 +53,7 @@ class StatsContainer extends StatelessWidget {
             '$stat',
             style: TextStyle(
               color: statColour,
-              fontSize: 25.0,
+              fontSize: 22.0,
               fontWeight: FontWeight.bold,
             ),
           ),
