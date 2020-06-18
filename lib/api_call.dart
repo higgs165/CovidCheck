@@ -6,11 +6,12 @@ class DataCall {
     Map<String, String> statMap = {};
     String requestUrl;
 
-    if(region == 'Global') {
-      requestUrl = 'https://disease.sh/v2/all';
-    }
-    else {
-      requestUrl = 'https://disease.sh/v2/countries/$region';
+    if (region == 'Global') {
+      //requestUrl = 'https://disease.sh/v2/all';
+      requestUrl = 'https://api.covidnow.com/v1/global/stats';
+    } else {
+      //requestUrl = 'https://disease.sh/v2/countries/$region';
+      requestUrl = 'https://api.covidnow.com/v1/global/countries';
     }
 
     http.Response response = await http.get(requestUrl);
@@ -18,17 +19,15 @@ class DataCall {
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
 
-      int confirmed = data['cases'];
-      int deaths = data['deaths'];
-      int recovered = data['recovered'];
-      int todayCases = data['todayCases'];
-      int todayDeaths = data['todayDeaths'];
+      int confirmed = data['data'][region]['nationwide']['confirmed'];
+      int deaths = data['data'][region]['nationwide']['deaths'];
+      int recovered = data['data'][region]['nationwide']['recovered'];
 
       statMap['confirmed'] = confirmed.toString();
       statMap['deaths'] = deaths.toString();
       statMap['recovered'] = recovered.toString();
-      statMap['todayCases'] = todayCases.toString();
-      statMap['todayDeaths'] = todayDeaths.toString();
+//      statMap['todayCases'] = todayCases.toString();
+//      statMap['todayDeaths'] = todayDeaths.toString();
 
       return statMap;
     } else {
