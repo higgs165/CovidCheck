@@ -20,7 +20,7 @@ Nearly finished, may need to choose a different API as some stats show a 0 for r
 
 # Screenshots
 
-Screenshots taken around 16:20 on 18/06/2020
+Screenshots taken around 16:20 GMT +0 on 18/06/2020
 
 <h3>Global Stats</h3>
 <img src="Screenshots/globalstats.jpg" alt="Global COVID-19 Stats" width="200" height="400">
