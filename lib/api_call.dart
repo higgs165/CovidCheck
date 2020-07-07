@@ -31,13 +31,15 @@ class DataCall {
       statMap['confirmed'] = confirmed.replaceAllMapped(reg, mathFunc);
       statMap['deaths'] = deaths.replaceAllMapped(reg, mathFunc);
       statMap['recovered'] = recovered.replaceAllMapped(reg, mathFunc);
-      statMap['casesToday'] = casesToday.toString().replaceAllMapped(reg, mathFunc);
-      statMap['deathsToday'] = deathsToday.toString().replaceAllMapped(reg, mathFunc);
+      statMap['casesToday'] =
+          casesToday.toString().replaceAllMapped(reg, mathFunc);
+      statMap['deathsToday'] =
+          deathsToday.toString().replaceAllMapped(reg, mathFunc);
 
       return statMap;
     } else {
       print(response.statusCode);
-      throw 'Get request failed';
+      throw 'GET request failed';
     }
   }
 }

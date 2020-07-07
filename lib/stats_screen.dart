@@ -4,6 +4,7 @@ import 'stats_cards.dart';
 import 'countries_list.dart';
 import 'package:gradient_app_bar/gradient_app_bar.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Covid extends StatefulWidget {
   @override
@@ -11,7 +12,7 @@ class Covid extends StatefulWidget {
 }
 
 class _CovidState extends State<Covid> {
-  String selectedLocation = 'Ireland';
+  String selectedLocation = 'Global';
   bool isWaiting = false;
 
   DropdownButton<String> countriesDropdown() {
@@ -190,25 +191,41 @@ class _CovidState extends State<Covid> {
                       iconColour: Colors.green),
                   StatsContainer(
                       text: 'Cases Today',
-                      stat:
-                          isWaiting ? 'Loading...' : statsMap['casesToday'],
+                      stat: isWaiting ? 'Loading...' : statsMap['casesToday'],
                       statColour: Colors.orange,
                       icon: FontAwesomeIcons.calendarDay,
                       icon2: FontAwesomeIcons.checkSquare,
                       iconColour: Colors.orange),
                   StatsContainer(
                       text: 'Deaths Today',
-                      stat:
-                          isWaiting ? 'Loading...' : statsMap['deathsToday'],
+                      stat: isWaiting ? 'Loading...' : statsMap['deathsToday'],
                       statColour: Colors.red,
                       icon: FontAwesomeIcons.calendarDay,
                       icon2: FontAwesomeIcons.skullCrossbones,
                       iconColour: Colors.red),
+                  SizedBox(height: 20.0),
+
                 ],
               ),
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class Spinner extends StatelessWidget {
+  const Spinner({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: SpinKitWave(
+        color: Colors.white,
+        size: 30.0,
       ),
     );
   }

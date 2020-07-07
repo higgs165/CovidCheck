@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 
 List<String> countriesList = [
   'Global',
@@ -139,7 +138,6 @@ List<String> countriesList = [
   'Philippines',
   'Poland',
   'Portugal',
-  'Puerto Rico',
   'Qatar',
   'Romania',
   'Russia',
