@@ -49,6 +49,7 @@ class StatsContainer extends StatelessWidget {
               ),
             ),
           ),
+          SizedBox(width: 5.0),
           Text(
             '$stat',
             style: TextStyle(
