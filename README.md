@@ -16,7 +16,7 @@ The user picks a location from the dropdown button at the top. The statistics fo
 
 # Stage of Completion
 
-Nearly finished, may need to choose a different API as some stats show a 0 for recovered cases. Will also add screenshots.
+Finished. May change splash screen or add more features in the future.
 
 # Screenshots
 
