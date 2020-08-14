@@ -2,7 +2,7 @@
 
 A simple, minimal Android app made using Dart to display statistics regarding COVID-19, both globally and per country. Android Studio was the IDE used for this app.
 
-NOTE: Despite it saying there are 3 contributors, the only one is me.
+NOTE: Despite it saying there are 3 contributors, the only one is me. I assume the other contributors are just issues with how I configured the email and username in Git.
 
 Stats include: 
 
