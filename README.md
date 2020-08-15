@@ -1,6 +1,6 @@
 # Description
 
-Android app built with Dart, in Android Studio, to display COVID-19 stats, both globally and per country.
+Android app built with Dart, in Android Studio, to display COVID-19 stats, both globally and per country. The user picks a location from the dropdown button at the top. The statistics for that location or globally are retrieved using an API called NovelCOVID. 
 
 ### NOTE: Despite it saying there are 3 contributors, the only one is me. I assume the other contributors are just issues with how I configured the email and username in Git.
 
@@ -11,10 +11,6 @@ Stats include:
 - Recovered 
 - Cases Today
 - Deaths Today
-
-# How it Works
-
-The user picks a location from the dropdown button at the top. The statistics for that location or globally are retrieved using an API called NovelCOVID. 
 
 # Screenshots
 
