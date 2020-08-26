@@ -91,12 +91,12 @@ class _CovidState extends State<Covid> {
                       height: 300,
                       decoration: BoxDecoration(
                         color: Colors.white,
-                      )
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          Text(
-                            'Developed by Mark Higgins',
+                    ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          'Developed by Mark Higgins',
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: 20.0,
@@ -134,10 +134,7 @@ class _CovidState extends State<Covid> {
             margin: EdgeInsets.only(top: 30.0),
             padding: EdgeInsets.fromLTRB(20.0, 5.0, 20.0, 5.0),
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                stops: [0.6, 1],
-                colors: [Colors.white, Colors.blue],
-              ),
+              color: Colors.white,
               borderRadius: BorderRadius.all(Radius.circular(30.0)),
               boxShadow: [
                 BoxShadow(
