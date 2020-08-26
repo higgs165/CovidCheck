@@ -90,11 +90,8 @@ class _CovidState extends State<Covid> {
                     return Container(
                       height: 300,
                       decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        colors: [Colors.white, Colors.lightBlueAccent],
-                      )),
+                        color: Colors.white,
+                      )
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
